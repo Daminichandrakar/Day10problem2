@@ -1,5 +1,6 @@
 #! /bin/bash -x
-echo "Flip Coin Simulator""
+#echo "Flip Coin Simulator"
+function headtail(){
 head=0
 tail=0
 while [ $head -le 21 -a $tail -le 21 ]
@@ -12,16 +13,36 @@ do
         	((tail++))
 	fi
 done
-if [ $head -eq $tail ]
+}
+headtail
+echo $head
+echo $tail
+if [ $head -gt $tail ]
 then
-	echo "Tie"
-elif [ $head -gt $tail ]
+          if [ $(($head-$tail)) -gt 2 ]
+          then
+                       echo $head "win"
+
+           else
+                    headtail
+           fi
+
+elif [ $tail -gt $head ]
 then
-	echo "Head won"
-	a=$(($head-$tail))
-	echo "Head won by $a flips"
+             if [ $(($tail-$head)) -gt 2 ]
+           then
+                        echo "$tail win"
+
+            else
+                     headtail
+            fi
+
+
 else
-	echo "Tail Won"
-	b=$(($tail-$head))
-	echo "Tail won by $b flips"
+           if [ $head -eq $tail ]
+                then
+                         echo "tie"
+                        headtal
+                fi
 fi
+
